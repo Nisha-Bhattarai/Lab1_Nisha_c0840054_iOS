@@ -16,6 +16,7 @@
 		C7118BC027962B8D0009733B /* Lab1_Nisha_c0840054_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7118BBF27962B8D0009733B /* Lab1_Nisha_c0840054_iOSTests.swift */; };
 		C7118BCA27962B8D0009733B /* Lab1_Nisha_c0840054_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7118BC927962B8D0009733B /* Lab1_Nisha_c0840054_iOSUITests.swift */; };
 		C7118BCC27962B8D0009733B /* Lab1_Nisha_c0840054_iOSUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7118BCB27962B8D0009733B /* Lab1_Nisha_c0840054_iOSUITestsLaunchTests.swift */; };
+		C737F67227A1C79400B1133E /* TicTacToe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C737F67027A1C79400B1133E /* TicTacToe.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		C7118BC527962B8D0009733B /* Lab1_Nisha_c0840054_iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Lab1_Nisha_c0840054_iOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7118BC927962B8D0009733B /* Lab1_Nisha_c0840054_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lab1_Nisha_c0840054_iOSUITests.swift; sourceTree = "<group>"; };
 		C7118BCB27962B8D0009733B /* Lab1_Nisha_c0840054_iOSUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lab1_Nisha_c0840054_iOSUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C737F67127A1C79400B1133E /* TicTacToe.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TicTacToe.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				C7118BB127962B8D0009733B /* Assets.xcassets */,
 				C7118BB327962B8D0009733B /* LaunchScreen.storyboard */,
 				C7118BB627962B8D0009733B /* Info.plist */,
+				C737F67027A1C79400B1133E /* TicTacToe.xcdatamodeld */,
 			);
 			path = Lab1_Nisha_c0840054_iOS;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 			files = (
 				C7118BAD27962B8C0009733B /* ViewController.swift in Sources */,
 				C7118BA927962B8C0009733B /* AppDelegate.swift in Sources */,
+				C737F67227A1C79400B1133E /* TicTacToe.xcdatamodeld in Sources */,
 				C7118BAB27962B8C0009733B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -598,6 +602,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C737F67027A1C79400B1133E /* TicTacToe.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C737F67127A1C79400B1133E /* TicTacToe.xcdatamodel */,
+			);
+			currentVersion = C737F67127A1C79400B1133E /* TicTacToe.xcdatamodel */;
+			path = TicTacToe.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = C7118B9D27962B8C0009733B /* Project object */;
 }

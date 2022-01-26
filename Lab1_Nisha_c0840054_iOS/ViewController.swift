@@ -3,6 +3,7 @@
 
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController {
     
@@ -23,6 +24,12 @@ class ViewController: UIViewController {
     //Variable to show the score of O
     var scorePlayerO = 0
     
+    var lastTapped: UIButton!
+    
+    var savedScores: Score!
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -31,8 +38,23 @@ class ViewController: UIViewController {
         print(playBoard)
         //Call the function to enable swipe gesture
         addSwipeGesture()
+        loadScores()
     }
 
+    override var canBecomeFirstResponder: Bool{
+        return true
+    }
+    
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake{
+            if lastTapped != nil {
+                lastTapped.setImage(nil, for: .normal)
+                let i = tapButtons.firstIndex(of: lastTapped)!
+                currentPlayer = playBoard[i]
+                playBoard[i] = ""
+            }
+        }
+    }
     
     @IBAction func tapButtonsAction(_ sender: UIButton) {
 
@@ -45,10 +67,10 @@ class ViewController: UIViewController {
         if !playBoard[i].isEmpty {
            return
         }
+        lastTapped = sender
        // Set the title for two players and keep the turns for them
         if currentPlayer == "O" {
             sender.setImage(UIImage(named: "nought"), for: .normal)
-            
             currentPlayer = "X"
             playBoard[i] = "O"
         }
@@ -90,13 +112,23 @@ class ViewController: UIViewController {
                !playerAt0.isEmpty {
                 print("\(playerAt0) is the winner!")
                 alertMSG(msg: "\(playerAt0) is the winner! Click OK to play again OR Swipe left to reset the game!")
+                if savedScores == nil {
+                    savedScores = Score(context: context)
+                }
                 // To add score to the players
                 if playerAt0 == "O" {
                     scorePlayerO += 1
+                    savedScores.o = String(scorePlayerO)
                     scoreO.text = String(scorePlayerO)
                 } else if playerAt0 == "X" {
                     scorePlayerX += 1
+                    savedScores.x = String(scorePlayerX)
                     scoreX.text = String(scorePlayerX)
+                }
+                do {
+                    try context.save()
+                } catch {
+                    print("Error", error.localizedDescription)
                 }
                 return
             }
@@ -142,6 +174,17 @@ class ViewController: UIViewController {
         for button in tapButtons {
             button.setImage(nil, for: UIControl.State())
         }
+        if savedScores == nil {
+            savedScores = Score(context: context)
+        }
+        // To add score to the players
+        savedScores.x = "0"
+        savedScores.o = "0"
+        do {
+            try context.save()
+        } catch {
+            print("Error", error.localizedDescription)
+        }
     }
     
     
@@ -150,7 +193,23 @@ class ViewController: UIViewController {
         for _ in 0..<tapButtons.count {
             playBoard.append("")
         }
+       
     }
     
+    //CoreData (Fetch)
+    func loadScores(){
+        let request: NSFetchRequest<Score> = Score.fetchRequest()
+                
+                do {
+                    let scores = try context.fetch(request)
+                    if scores.count > 0 {
+                        savedScores = scores.first
+                        scoreO.text = savedScores.o
+                        scoreX.text = savedScores.x
+                    }
+                } catch {
+                    print("Error loading folders \(error.localizedDescription)")
+                }
+    }
 }
 
